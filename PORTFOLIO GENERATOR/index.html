@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .form-container {
+      background: white;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      padding: 12px 20px;
+      margin: 10px 5px 0 0;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .generate-btn { background: #007BFF; color: white; }
+    .generate-btn:hover { background: #0056b3; }
+    .download-btn { background: #28a745; color: white; }
+    .download-btn:hover { background: #1c7c31; }
+  </style>
+</head>
+<body>
+  <h1>Portfolio Generator</h1>
+
+  <div class="form-container">
+    <label>Name:</label>
+    <input type="text" id="name" placeholder="Enter your name">
+
+    <label>About:</label>
+    <textarea id="about" rows="3" placeholder="Write a short bio"></textarea>
+
+    <label>Skills (comma separated):</label>
+    <input type="text" id="skills" placeholder="HTML, CSS, JavaScript">
+
+    <label>Projects (comma separated):</label>
+    <input type="text" id="projects" placeholder="Quiz App, Weather App">
+
+    <label>Contact Email:</label>
+    <input type="email" id="contact" placeholder="your@email.com">
+
+    <label>Upload Profile Picture:</label>
+    <input type="file" id="profilePic" accept="image/*">
+
+    <label>Select Theme:</label>
+    <select id="theme">
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+      <option value="gradient">Gradient</option>
+    </select>
+
+    <button class="generate-btn" onclick="openPortfolio()">Generate Portfolio</button>
+    <button class="download-btn" onclick="downloadPortfolio()">Download HTML</button>
+  </div>
+
+  <script>
+    function generateHTML(picURL) {
+      const name = document.getElementById("name").value;
+      const about = document.getElementById("about").value;
+      const skills = document.getElementById("skills").value.split(",");
+      const projects = document.getElementById("projects").value.split(",");
+      const contact = document.getElementById("contact").value;
+      const theme = document.getElementById("theme").value;
+
+      let bgColor = "#ffffff", textColor = "#000000";
+      if (theme === "dark") { bgColor = "#121212"; textColor = "#f4f4f4"; }
+      if (theme === "gradient") { bgColor = "linear-gradient(to right, #6a11cb, #2575fc)"; textColor = "#ffffff"; }
+
+      return `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
